@@ -1,0 +1,18 @@
+{
+  "name": "polymer-demo-transmogrifier",
+  "version": "1.0.0",
+  "description": "Blerg",
+  "authors": [
+    "The Polymer Authors"
+  ],
+  "private": true,
+  "license": "http://polymer.github.io/LICENSE.txt",
+  "ignore": [],
+  "dependencies": {
+    "paper-checkbox": "PolymerElements/paper-checkbox#^1.0.0",
+    "paper-styles": "PolymerElements/paper-styles#^1.0.0",
+    "marked-element": "PolymerElements/marked-element#^1.0.0",
+    "prism-highlighter": "PolymerElements/prism-highlighter#1.0.0",
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}
