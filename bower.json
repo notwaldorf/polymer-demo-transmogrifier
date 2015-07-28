@@ -1,20 +1,36 @@
 {
   "name": "polymer-demo-transmogrifier",
   "version": "1.0.0",
-  "description": "Blerg",
+  "description": "Code snipped and rendered demo Voltron element",
   "authors": [
     "The Polymer Authors"
   ],
+  "keywords": [
+    "web-components",
+    "polymer",
+    "demo",
+    "code"
+  ],
+  "main": [
+    "demo-snippet.html"
+  ],
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/notwaldorf/polymer-demo-transmogrifier.git"
+  },
   "license": "http://polymer.github.io/LICENSE.txt",
+  "homepage": "https://github.com/notwaldorf/olymer-demo-transmogrifier",
   "ignore": [],
   "dependencies": {
-    "paper-checkbox": "PolymerElements/paper-checkbox#^1.0.0",
     "paper-styles": "PolymerElements/paper-styles#^1.0.0",
     "paper-icon-button": "PolymerElements/paper-icon-button#^1.0.0",
     "iron-icons": "PolymerElements/iron-icons#^1.0.0",
     "marked-element": "PolymerElements/marked-element#^1.0.0",
     "prism-highlighter": "PolymerElements/prism-highlighter#1.0.0",
     "polymer": "Polymer/polymer#^1.0.0"
+  },
+  "devDependencies": {
+    "paper-checkbox": "PolymerElements/paper-checkbox#^1.0.0"
   }
 }
