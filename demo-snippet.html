@@ -16,22 +16,44 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="bower_components/prism-highlighter/prism-highlighter.html">
 <link rel="import" href="bower_components/marked-element/marked-element.html">
 
+<!--
+For example:
+
+    <demo-snippet title="paper-checkbox demo">
+      <paper-checkbox>Checkbox</paper-checkbox>
+      <paper-checkbox checked>Checkbox</paper-checkbox>
+    </demo-snippet>
+
+### Styling
+
+The following custom properties and mixins are available for styling:
+
+Custom property | Description | Default
+----------------|-------------|----------
+`demo-snippet-header-background-color` | Background color of the header| `--paper-teal-500`
+`demo-snippet-header-color` | Header text color| `white`
+`--demo-snippet` | Mixin applied to the entire element | `{}`
+`--demo-snippet-header` | Mixin applied to the title header | `{}`
+`--demo-snippet-demo` | Mixin applied to the demo section | `{}`
+`--demo-snippet-code` | Mixin applied to the code section | `{}`
+-->
 <dom-module id="demo-snippet">
   <style>
     :host {
-      background-color: white;
       @apply(--layout-vertical);
       @apply(--center-justified);
       @apply(--shadow-elevation-2dp);
+      @apply(--demo-snippet-header);
     }
 
     .header {
-      background-color: var(--paper-teal-500);
-      color: white;
+      background-color: var(--demo-snippet-header-background-color, --paper-teal-500);
+      color: var(--demo-snippet-header-color, white);
       padding: 14px;
       margin: 0;
       font-weight: 300;
       font-size: 18px;
+      @apply(--demo-snippet-header);
     }
 
     .demo {
@@ -39,6 +61,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       padding: 24px;
       margin-left: auto;
       margin-right: auto;
+      @apply(--demo-snippet-demo);
     }
 
     .code {
@@ -48,6 +71,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       font-size: 13px;
       word-wrap: break-word;
       padding: 12px 24px;
+      @apply(--demo-snippet-code);
     }
 
     paper-icon-button {
