@@ -11,6 +11,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="bower_components/paper-styles/color.html">
 <link rel="import" href="bower_components/paper-styles/shadow.html">
+<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="bower_components/iron-icons/iron-icons.html">
 <link rel="import" href="bower_components/prism-highlighter/prism-highlighter.html">
 <link rel="import" href="bower_components/marked-element/marked-element.html">
 
@@ -39,16 +41,20 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       margin-right: auto;
     }
 
-    marked-element {
+    .code {
+      position: relative;
       background-color: var(--paper-grey-50);
-      border: solid #e5e5e5;
-      border-width: 1px 0;
-      overflow-x: auto;
-      padding: 12px 24px;
+      border-top: 1px solid #e5e5e5;
       font-size: 13px;
       word-wrap: break-word;
+      padding: 12px 24px;
     }
 
+    paper-icon-button {
+      position: absolute;
+      top: 0;
+      right: 0px;
+    }
   </style>
   <template>
       <div class="header">[[title]]</div>
@@ -58,7 +64,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </div>
 
       <prism-highlighter></prism-highlighter>
-      <marked-element id="m" markdown="[[_getMarkdown(title)]]"></marked-element>
+      <div class="code">
+        <marked-element id="codeSnippet" markdown="[[_getMarkdown(title)]]"></marked-element>
+        <paper-icon-button icon="content-paste" title="copy to clipboard" on-click="copyToClipboard">
+        </paper-icon-button>
+      </div>
   </template>
 
   <script>
@@ -76,13 +86,41 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getMarkdown: function(title) {
         var nodes = Polymer.dom(this).queryDistributedElements('*');
 
-        var markdown = '\n```\n';
+        var snippet = '';
         for (var i = 0; i < nodes.length; i++) {
           // Boolean properties, sigh. This is probably wrong.
-          markdown += nodes[i].outerHTML.replace(/=""/g, '') + '\n';
+          snippet += nodes[i].outerHTML.replace(/=""/g, '') + '\n';
         }
 
-        return markdown + '```';
+        return '```\n' + snippet + '```';
+      },
+
+      copyToClipboard: function() {
+        // from https://github.com/google/material-design-lite/blob/master/docs/_assets/snippets.js
+        'use strict';
+
+        if (window.getSelection().toString().length > 0) {
+          // user has selected some text manually
+          // don't do anything
+          return;
+        }
+
+        var snipRange = document.createRange();
+        snipRange.selectNodeContents(this.$.codeSnippet);
+
+        var sel = window.getSelection();
+        sel.removeAllRanges();
+        sel.addRange(snipRange);
+
+        var res = false;
+        try {
+          res = document.execCommand('copy');
+        } catch (err) {
+          // copy command is not available
+          console.error(err);
+        }
+        sel.removeAllRanges();
+        return res;
       }
     });
   </script>
