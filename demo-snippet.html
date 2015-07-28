@@ -10,6 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="bower_components/polymer/polymer.html">
 <link rel="import" href="bower_components/paper-styles/color.html">
+<link rel="import" href="bower_components/paper-styles/shadow.html">
 <link rel="import" href="bower_components/prism-highlighter/prism-highlighter.html">
 <link rel="import" href="bower_components/marked-element/marked-element.html">
 
@@ -44,7 +45,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       border-width: 1px 0;
       overflow-x: auto;
       padding: 12px 24px;
-      font-size: 15px;
+      font-size: 13px;
       word-wrap: break-word;
     }
 
@@ -68,11 +69,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         title: {
           type: String,
           value: ''
-        },
-
-        type: {
-          type: String,
-          value: 'html'
         }
       },
 
@@ -80,16 +76,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       _getMarkdown: function(title) {
         var nodes = Polymer.dom(this).queryDistributedElements('*');
 
-        var markdown = '```\n';
+        var markdown = '\n```\n';
         for (var i = 0; i < nodes.length; i++) {
-          markdown += nodes[i].outerHTML + '\n';
+          // Boolean properties, sigh. This is probably wrong.
+          markdown += nodes[i].outerHTML.replace(/=""/g, '') + '\n';
         }
 
-        // Boolean properties, sigh. This is probably wrong.
-        markdown = markdown.replace(/=""/g, '');
-        markdown += '```';
-
-        return markdown;
+        return markdown + '```';
       }
     });
   </script>
