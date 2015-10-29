@@ -1,7 +1,7 @@
 {
   "name": "polymer-demo-transmogrifier",
   "version": "1.0.0",
-  "description": "Code snippet and rendered demo Voltron element",
+  "description": "Code-and-demo snippet element",
   "authors": [
     "The Polymer Authors"
   ],
@@ -31,6 +31,8 @@
     "polymer": "Polymer/polymer#^1.0.0"
   },
   "devDependencies": {
-    "paper-checkbox": "PolymerElements/paper-checkbox#^1.0.0"
+    "paper-checkbox": "PolymerElements/paper-checkbox#^1.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0"
   }
 }

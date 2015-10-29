@@ -15,10 +15,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
 
 <!--
-This is a demo-and-code-snippet Voltron element, to make demos friendlier for users.
-It's meant to render a snippet of code, and display its source in the simplest way possible.
+This is simple element that will render both the code of a demo snippet, as
+well as the rendered demo. It can be used for both native elements and
+Polymer elements.
 
-For example:
+Example of a native element demo
+
+    <demo-snippet>
+      <input type="date">
+    </demo-snippet>
+
+Example of a Polymer <paper-checkbox> demo
 
     <demo-snippet>
       <paper-checkbox>Checkbox</paper-checkbox>
@@ -33,7 +40,11 @@ Custom property | Description | Default
 ----------------|-------------|----------
 `--demo-snippet-demo` | Mixin applied to the demo section | `{}`
 `--demo-snippet-code` | Mixin applied to the code section | `{}`
+
+@element demo-snippet
+@demo demo/index.html
 -->
+
 <dom-module id="demo-snippet">
   <style>
     :host {

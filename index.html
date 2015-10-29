@@ -9,82 +9,20 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <html>
-  <head>
-    <title>paper-checkbox demo</title>
+<head>
 
-    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes">
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../paper-styles/color.html">
-    <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
-    <link rel="import" href="../paper-checkbox/paper-checkbox.html">
-    <link rel="import" href="demo-snippet.html">
+  <title>demo-snippet</title>
 
-    <style is="custom-style">
-      body {
-        font-family: 'Roboto', 'Noto', sans-serif;
-        font-size: 14px;
-        margin: 0;
-        padding: 24px;
-        max-width: 600px;
+  <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+  <link rel="import" href="../iron-component-page/iron-component-page.html">
 
-        margin-left: auto;
-        margin-right: auto;
-      }
+</head>
+<body>
 
-      paper-checkbox {
-        display: block;
-        margin-right: 24px;
-      }
+<iron-component-page></iron-component-page>
 
-      demo-snippet {
-        margin: 24px;
-        width: 100%;
-        --demo-snippet-demo: {
-          padding: 20px;
-          @apply(--layout-horizontal);
-          @apply(--layout-center-justified);
-        }
-      }
-    </style>
-  </head>
-  <body unresolved>
-
-    <h4>Normal</h4>
-    <demo-snippet>
-      <paper-checkbox>Checkbox</paper-checkbox>
-      <paper-checkbox checked>Checkbox</paper-checkbox>
-    </demo-snippet>
-
-    <h4>Disabled</h4>
-    <demo-snippet>
-      <paper-checkbox disabled>Checkbox</paper-checkbox>
-      <paper-checkbox disabled checked>Checkbox</paper-checkbox>
-    </demo-snippet>
-
-    <h4>Custom styles</h4>
-    <demo-snippet>
-      <style is="custom-style">
-        paper-checkbox.blue {
-          --paper-checkbox-checked-color: var(--paper-light-blue-500);
-          --paper-checkbox-checked-ink-color: var(--paper-light-blue-500);
-          --paper-checkbox-unchecked-color: var(--paper-light-blue-900);
-          --paper-checkbox-unchecked-ink-color: var(--paper-light-blue-900);
-          --paper-checkbox-label-color: var(--paper-light-blue-500);
-        }
-        paper-checkbox.red {
-          --paper-checkbox-checked-color: var(--paper-red-500);
-          --paper-checkbox-checked-ink-color: var(--paper-red-500);
-          --paper-checkbox-unchecked-color: var(--paper-red-900);
-          --paper-checkbox-unchecked-ink-color: var(--paper-red-900);
-          --paper-checkbox-label-color: var(--paper-red-500);
-        }
-      </style>
-      
-      <paper-checkbox class="blue">Checkbox</paper-checkbox>
-      <paper-checkbox checked class="red">Checkbox</paper-checkbox>
-    </demo-snippet>
-  </body>
+</body>
 </html>
