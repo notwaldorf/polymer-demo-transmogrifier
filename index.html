@@ -16,11 +16,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-capable" content="yes">
 
-    <script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="bower_components/paper-styles/color.html">
-    <link rel="import" href="bower_components/iron-flex-layout/iron-flex-layout.html">
-
-    <link rel="import" href="bower_components/paper-checkbox/paper-checkbox.html">
+    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../paper-styles/color.html">
+    <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+    <link rel="import" href="../paper-checkbox/paper-checkbox.html">
     <link rel="import" href="demo-snippet.html">
 
     <style is="custom-style">
@@ -30,11 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         margin: 0;
         padding: 24px;
         max-width: 600px;
-        background-color: var(--paper-grey-50);
 
-        @apply(--layout-horizontal);
-        @apply(--layout-center-justified);
-        @apply(--layout-wrap);
         margin-left: auto;
         margin-right: auto;
       }
@@ -45,43 +40,51 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       demo-snippet {
+        margin: 24px;
         width: 100%;
-        margin-bottom: 24px;
+        --demo-snippet-demo: {
+          padding: 20px;
+          @apply(--layout-horizontal);
+          @apply(--layout-center-justified);
+        }
       }
     </style>
   </head>
   <body unresolved>
 
-    <demo-snippet title="Normal">
+    <h4>Normal</h4>
+    <demo-snippet>
       <paper-checkbox>Checkbox</paper-checkbox>
       <paper-checkbox checked>Checkbox</paper-checkbox>
     </demo-snippet>
 
-    <demo-snippet title="Disabled">
+    <h4>Disabled</h4>
+    <demo-snippet>
       <paper-checkbox disabled>Checkbox</paper-checkbox>
       <paper-checkbox disabled checked>Checkbox</paper-checkbox>
     </demo-snippet>
 
-    <demo-snippet title="Custom Styles">
-<!-- the markdown parser doesn't deal well if the <style> is indented -->
-<paper-checkbox class="blue">Checkbox</paper-checkbox>
-<paper-checkbox checked class="red">Checkbox</paper-checkbox>
-<style is="custom-style">
-  paper-checkbox.blue {
-    --paper-checkbox-checked-color: var(--paper-light-blue-500);
-    --paper-checkbox-checked-ink-color: var(--paper-light-blue-500);
-    --paper-checkbox-unchecked-color: var(--paper-light-blue-900);
-    --paper-checkbox-unchecked-ink-color: var(--paper-light-blue-900);
-    --paper-checkbox-label-color: var(--paper-light-blue-500);
-  }
-  paper-checkbox.red {
-    --paper-checkbox-checked-color: var(--paper-red-500);
-    --paper-checkbox-checked-ink-color: var(--paper-red-500);
-    --paper-checkbox-unchecked-color: var(--paper-red-900);
-    --paper-checkbox-unchecked-ink-color: var(--paper-red-900);
-    --paper-checkbox-label-color: var(--paper-red-500);
-  }
-</style>
+    <h4>Custom styles</h4>
+    <demo-snippet>
+      <style is="custom-style">
+        paper-checkbox.blue {
+          --paper-checkbox-checked-color: var(--paper-light-blue-500);
+          --paper-checkbox-checked-ink-color: var(--paper-light-blue-500);
+          --paper-checkbox-unchecked-color: var(--paper-light-blue-900);
+          --paper-checkbox-unchecked-ink-color: var(--paper-light-blue-900);
+          --paper-checkbox-label-color: var(--paper-light-blue-500);
+        }
+        paper-checkbox.red {
+          --paper-checkbox-checked-color: var(--paper-red-500);
+          --paper-checkbox-checked-ink-color: var(--paper-red-500);
+          --paper-checkbox-unchecked-color: var(--paper-red-900);
+          --paper-checkbox-unchecked-ink-color: var(--paper-red-900);
+          --paper-checkbox-label-color: var(--paper-red-500);
+        }
+      </style>
+      
+      <paper-checkbox class="blue">Checkbox</paper-checkbox>
+      <paper-checkbox checked class="red">Checkbox</paper-checkbox>
     </demo-snippet>
   </body>
 </html>

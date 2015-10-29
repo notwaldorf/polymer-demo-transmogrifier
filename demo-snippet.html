@@ -8,18 +8,16 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<link rel="import" href="bower_components/polymer/polymer.html">
-<link rel="import" href="bower_components/paper-styles/color.html">
-<link rel="import" href="bower_components/paper-styles/shadow.html">
-<link rel="import" href="bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="bower_components/iron-icons/iron-icons.html">
-<link rel="import" href="bower_components/prism-highlighter/prism-highlighter.html">
-<link rel="import" href="bower_components/marked-element/marked-element.html">
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../prism-highlighter/prism-highlighter.html">
+<link rel="import" href="../marked-element/marked-element.html">
+<link rel="import" href="../paper-styles/shadow.html">
+<link rel="import" href="../paper-icon-button/paper-icon-button.html">
 
 <!--
 For example:
 
-    <demo-snippet title="paper-checkbox demo">
+    <demo-snippet>
       <paper-checkbox>Checkbox</paper-checkbox>
       <paper-checkbox checked>Checkbox</paper-checkbox>
     </demo-snippet>
@@ -40,38 +38,28 @@ Custom property | Description | Default
 <dom-module id="demo-snippet">
   <style>
     :host {
-      @apply(--layout-vertical);
-      @apply(--center-justified);
+      display: inline-block;
       @apply(--shadow-elevation-2dp);
-      @apply(--demo-snippet-header);
-    }
-
-    .header {
-      background-color: var(--demo-snippet-header-background-color, --paper-teal-500);
-      color: var(--demo-snippet-header-color, white);
-      padding: 14px;
-      margin: 0;
-      font-weight: 300;
-      font-size: 18px;
-      @apply(--demo-snippet-header);
     }
 
     .demo {
-      @apply(--layout-horizontal);
-      padding: 24px;
-      margin-left: auto;
-      margin-right: auto;
+      border-bottom: 1px solid #e5e5e5;
+      margin: 0;
       @apply(--demo-snippet-demo);
     }
 
-    .code {
-      position: relative;
-      background-color: var(--paper-grey-50);
-      border-top: 1px solid #e5e5e5;
+    .custom {
+      padding: 0;
+      margin: 0;
+      background-color: #fafafa;
       font-size: 13px;
       word-wrap: break-word;
-      padding: 12px 24px;
       @apply(--demo-snippet-code);
+    }
+
+    .custom > pre {
+      margin: 0;
+      padding: 0 0 10px 0;
     }
 
     paper-icon-button {
@@ -81,42 +69,27 @@ Custom property | Description | Default
     }
   </style>
   <template>
-      <div class="header">[[title]]</div>
+    <div class="demo">
+      <content id="content"></content>
+    </div>
 
-      <div id="demo" class="demo">
-        <content id="content"></content>
-      </div>
+    <prism-highlighter></prism-highlighter>
 
-      <prism-highlighter></prism-highlighter>
-      <div class="code">
-        <marked-element id="codeSnippet" markdown="[[_getMarkdown(title)]]"></marked-element>
-        <paper-icon-button icon="content-paste" title="copy to clipboard" on-click="copyToClipboard">
-        </paper-icon-button>
-      </div>
+    <marked-element id="codeSnippet" markdown="[[_getMarkdown()]]" class="code">
+      <div class="markdown-html custom"></div>
+    </marked-element>
+
+    <paper-icon-button icon="content-paste" title="copy to clipboard" on-click="copyToClipboard">
+    </paper-icon-button>
   </template>
 
   <script>
     Polymer({
       is: 'demo-snippet',
 
-      properties: {
-        title: {
-          type: String,
-          value: ''
-        }
-      },
-
-      // Lol this needs to be a mutation observer.
-      _getMarkdown: function(title) {
-        var nodes = Polymer.dom(this).queryDistributedElements('*');
-
-        var snippet = '';
-        for (var i = 0; i < nodes.length; i++) {
-          // Boolean properties, sigh. This is probably wrong.
-          snippet += nodes[i].outerHTML.replace(/=""/g, '') + '\n';
-        }
-
-        return '```\n' + snippet + '```';
+      _getMarkdown: function() {
+       var snippet = Polymer.domInnerHTML.getInnerHTML(this);
+        return '```\n' + snippet + '\n' + '```';
       },
 
       copyToClipboard: function() {
