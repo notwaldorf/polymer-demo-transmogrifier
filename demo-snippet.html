@@ -13,6 +13,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../marked-element/marked-element.html">
 <link rel="import" href="../paper-styles/shadow.html">
 <link rel="import" href="../paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+
 
 <!--
 This is simple element that will render both the source and demo of a
@@ -32,6 +34,9 @@ Example of a Polymer <paper-checkbox> demo
       <paper-checkbox checked>Checkbox</paper-checkbox>
     </demo-snippet>
 
+By default, the element also comes with a copy-to-clipboard button, that
+can be optionally removed.
+
 ### Styling
 
 The following custom properties and mixins are available for styling:
@@ -40,6 +45,7 @@ Custom property | Description | Default
 ----------------|-------------|----------
 `--demo-snippet-demo` | Mixin applied to the demo section | `{}`
 `--demo-snippet-code` | Mixin applied to the code section | `{}`
+`--demo-snippet-copy-button` | Mixin applied to the copy-to-clipboard button | `{}`
 
 @element demo-snippet
 @demo demo/index.html
@@ -58,7 +64,7 @@ Custom property | Description | Default
       @apply(--demo-snippet-demo);
     }
 
-    .custom {
+    .code {
       padding: 0;
       margin: 0;
       background-color: #fafafa;
@@ -67,15 +73,20 @@ Custom property | Description | Default
       @apply(--demo-snippet-code);
     }
 
-    .custom > pre {
+    .code > pre {
       margin: 0;
       padding: 0 0 10px 0;
+    }
+
+    .code-container {
+      position: relative;
     }
 
     paper-icon-button {
       position: absolute;
       top: 0;
       right: 0px;
+      @apply(--demo-snippet-copy-button);
     }
   </style>
   <template>
@@ -85,17 +96,32 @@ Custom property | Description | Default
 
     <prism-highlighter></prism-highlighter>
 
-    <marked-element id="codeSnippet" markdown="[[_getMarkdown()]]" class="code">
-      <div class="markdown-html custom"></div>
-    </marked-element>
+    <div class="code-container">
+      <marked-element id="codeSnippet" markdown="[[_getMarkdown()]]">
+        <div class="markdown-html code"></div>
+      </marked-element>
 
-    <paper-icon-button icon="content-paste" title="copy to clipboard" on-click="copyToClipboard">
-    </paper-icon-button>
+      <paper-icon-button hidden$="[[noCopy]]"
+          icon="content-paste"
+          title="copy to clipboard"
+          on-click="copyToClipboard">
+      </paper-icon-button>
+    </div>
   </template>
 
   <script>
     Polymer({
       is: 'demo-snippet',
+
+      properties: {
+        /**
+         * If true, the element will not show a copy-to-clipboard icon.
+         */
+        noCopy: {
+          type: Boolean,
+          value: false
+        }
+      },
 
       _getMarkdown: function() {
        var snippet = Polymer.domInnerHTML.getInnerHTML(this);
