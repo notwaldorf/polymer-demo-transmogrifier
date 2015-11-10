@@ -24,14 +24,18 @@ Polymer elements.
 Example of a native element demo
 
     <demo-snippet>
-      <input type="date">
+      <template>
+        <input type="date">
+      </template>
     </demo-snippet>
 
 Example of a Polymer <paper-checkbox> demo
 
     <demo-snippet>
-      <paper-checkbox>Checkbox</paper-checkbox>
-      <paper-checkbox checked>Checkbox</paper-checkbox>
+      <template>
+        <paper-checkbox>Checkbox</paper-checkbox>
+        <paper-checkbox checked>Checkbox</paper-checkbox>
+      </template>
     </demo-snippet>
 
 By default, the element also comes with a copy-to-clipboard button, that
@@ -90,14 +94,14 @@ Custom property | Description | Default
     }
   </style>
   <template>
+    <prism-highlighter></prism-highlighter>
+
     <div class="demo">
       <content id="content"></content>
     </div>
 
-    <prism-highlighter></prism-highlighter>
-
     <div class="code-container">
-      <marked-element id="codeSnippet" markdown="[[_getMarkdown()]]">
+      <marked-element id="codeSnippet" markdown="[[_markdown]]">
         <div class="markdown-html code"></div>
       </marked-element>
 
@@ -120,12 +124,22 @@ Custom property | Description | Default
         noCopy: {
           type: Boolean,
           value: false
+        },
+
+        _markdown: {
+          type: String,
+          value: ''
         }
       },
 
-      _getMarkdown: function() {
-       var snippet = Polymer.domInnerHTML.getInnerHTML(this);
-        return '```\n' + snippet + '\n' + '```';
+      attached: function() {
+        var template = Polymer.dom(this).queryDistributedElements('template')[0];
+
+        var snippet = Polymer.domInnerHTML.getInnerHTML(template);
+        this._markdown = '```\n' + snippet + '\n' + '```';
+
+        // Stamp the template.
+        Polymer.dom(this).appendChild(document.importNode(template.content, true));
       },
 
       copyToClipboard: function() {
