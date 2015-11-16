@@ -30,6 +30,7 @@
     "polymer": "Polymer/polymer#^1.0.0"
   },
   "devDependencies": {
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "paper-checkbox": "PolymerElements/paper-checkbox#^1.0.0",
     "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
   }
