@@ -1,4 +1,4 @@
-#🚨🚨🚨 
+#🚨🚨🚨 This repo is unmaintained!
 Hai! Thanks for stopping by! This has moved to its permanent home, as a real citizen of PolymerElements-landia. Go check it out [there](https://github.com/polymerelements/iron-demo-helpers), since this is unmaintained!
 
 # demo-snippet
