@@ -1,3 +1,6 @@
+#🚨🚨🚨 
+Hai! Thanks for stopping by! This has moved to its permanent home, as a real citizen of PolymerElements-landia. Go check it out [there](https://github.com/polymerelements/iron-demo-helpers), since this is unmaintained!
+
 # demo-snippet
 This is simple element that will render both the source and demo of a
 code snippet. It can be used for both native elements and
